@@ -8,7 +8,7 @@ import {
   SearchRoot,
 } from './Search.style';
 
-export default function Search({ focused }) {
+export default function Search({ focused, value, onChange }) {
   const inputRef = React.useRef();
 
   React.useEffect(() => {
@@ -27,6 +27,8 @@ export default function Search({ focused }) {
           ref={inputRef}
           type="text"
           placeholder="Looking for something?"
+          value={value}
+          onChange={ev => onChange(ev.target.value)}
         />
       </SearchInputLabel>
     </SearchRoot>
@@ -39,4 +41,6 @@ Search.defaultProps = {
 
 Search.propTypes = {
   focused: PropTypes.bool,
+  value: PropTypes.string.isRequired,
+  onChange: PropTypes.func.isRequired,
 };
