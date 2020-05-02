@@ -1,19 +1,20 @@
 import styled from 'styled-components';
-import { theme } from '../../styles/theme';
 
-function colorStyle(color) {
+function colorStyle(color, theme) {
   if (color) {
     return theme.palette[color] ? theme.palette[color] : color;
   }
+
   return 'currentColor';
 }
 
-function backgroundColorStyle(backgroundColor) {
+function backgroundColorStyle(backgroundColor, theme) {
   if (backgroundColor) {
     return theme.palette[backgroundColor]
       ? theme.palette[backgroundColor]
       : backgroundColor;
   }
+
   return theme.palette.primaryLightest;
 }
 
@@ -24,10 +25,11 @@ export const Button = styled.button`
   font-weight: bold;
   font-size: 1rem;
   line-height: 1.187rem;
-  color: ${props => colorStyle(props.color)};
-  background-color: ${props => backgroundColorStyle(props.bg)};
+  color: ${props => colorStyle(props.color, props.theme)};
+  background-color: ${props =>
+    backgroundColorStyle(props.bg, props.theme)};
 
   &:focus {
-    box-shadow: 0 0 0 0.2em rgba(0, 109, 255, 0.4);
+    box-shadow: 0 0 0 0.2rem rgba(0, 109, 255, 0.4);
   }
 `;
