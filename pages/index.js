@@ -28,7 +28,7 @@ export default function Home() {
   }
 
   return (
-    <StyleProvider>
+    <>
       <Head>
         <title>Tes Tee App</title>
         <link rel="icon" href="/favicon.ico" />
@@ -45,6 +45,6 @@ export default function Home() {
           <Search value={search} onChange={onChangeSearch} focused />
         )}
       </Main>
-    </StyleProvider>
+    </>
   );
 }
