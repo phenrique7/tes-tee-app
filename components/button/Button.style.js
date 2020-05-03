@@ -25,6 +25,7 @@ export const Button = styled.button`
   font-weight: bold;
   font-size: 1rem;
   line-height: 1.187rem;
+  width: ${props => (props.fullWidth ? '100%' : 'auto')};
   color: ${props => colorStyle(props.color, props.theme)};
   background-color: ${props =>
     backgroundColorStyle(props.bg, props.theme)};

@@ -49,6 +49,5 @@ export const SearchInput = styled.input`
 
   @media (min-width: ${props => props.theme.screens.lg}) {
     padding: 0.75rem 0.75rem 0.75rem 3rem;
-    width: calc(100% - 3.75rem);
   }
 `;

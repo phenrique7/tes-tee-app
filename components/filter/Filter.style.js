@@ -51,7 +51,6 @@ export const Color = styled.span`
 `;
 
 export const FilterSizes = styled.div`
-  margin-top: 0.25rem;
   display: flex;
   flex-wrap: wrap;
 `;
@@ -71,8 +70,8 @@ export const Size = styled.div`
         : props.theme.palette.primaryLighter};
 
   span {
-    font-size: 0.75rem;
-    line-height: 0.937rem;
+    font-size: 1.25rem;
+    line-height: 1.5rem;
     font-weight: bold;
     color: ${props =>
       props.active

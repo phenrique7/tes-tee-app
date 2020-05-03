@@ -35,3 +35,5 @@ export const primaryDarker = () => (
     Primary Darker
   </Button>
 );
+
+export const fullWidth = () => <Button fullWidth>Full Width</Button>;
