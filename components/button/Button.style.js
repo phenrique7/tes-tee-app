@@ -18,7 +18,7 @@ function backgroundColorStyle(backgroundColor, theme) {
   return theme.palette.primaryLightest;
 }
 
-export const Button = styled.button`
+export const ButtonRoot = styled.button`
   padding: 10px 22px;
   border: transparent;
   border-radius: 5px;
