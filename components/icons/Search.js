@@ -3,7 +3,6 @@ import * as React from 'react';
 export default function Search() {
   return (
     <svg
-      style={{ padding: '0.25rem' }}
       width="24"
       height="24"
       viewBox="0 0 24 24"

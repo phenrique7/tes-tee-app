@@ -3,7 +3,6 @@ import * as React from 'react';
 export default function Subtract() {
   return (
     <svg
-      style={{ padding: '0.25rem' }}
       width="12"
       height="3"
       viewBox="0 0 12 3"

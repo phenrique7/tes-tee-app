@@ -3,7 +3,6 @@ import * as React from 'react';
 export default function Add() {
   return (
     <svg
-      style={{ padding: '0.25rem' }}
       width="12"
       height="13"
       viewBox="0 0 12 13"

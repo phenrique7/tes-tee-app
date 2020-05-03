@@ -1,9 +1,15 @@
 import * as React from 'react';
+import PropTypes from 'prop-types';
 
-export default function Equals() {
+export default function Equals({ size }) {
+  const sizes = { small: 1, medium: 1.5, large: 2 };
+  const inlineStyle = {
+    transform: sizes[size] ? `scale(${sizes[size]})` : 'scale(1)',
+  };
+
   return (
     <svg
-      style={{ padding: '0.25rem' }}
+      style={inlineStyle}
       width="12"
       height="8"
       viewBox="0 0 12 8"
@@ -25,3 +31,11 @@ export default function Equals() {
     </svg>
   );
 }
+
+Equals.defaultProps = {
+  size: 'small',
+};
+
+Equals.propTypes = {
+  size: PropTypes.oneOf(['small', 'medium', 'large']),
+};

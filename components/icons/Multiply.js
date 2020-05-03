@@ -3,7 +3,6 @@ import * as React from 'react';
 export default function Multiply() {
   return (
     <svg
-      style={{ padding: '0.25rem' }}
       width="8"
       height="8"
       viewBox="0 0 8 8"

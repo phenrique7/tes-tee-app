@@ -3,7 +3,6 @@ import * as React from 'react';
 export default function Instagram() {
   return (
     <svg
-      style={{ padding: '0.25rem' }}
       width="48"
       height="48"
       viewBox="0 0 48 48"

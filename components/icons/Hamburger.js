@@ -3,7 +3,6 @@ import * as React from 'react';
 export default function Hamburger() {
   return (
     <svg
-      style={{ padding: '0.25rem' }}
       width="28"
       height="24"
       viewBox="0 0 28 24"

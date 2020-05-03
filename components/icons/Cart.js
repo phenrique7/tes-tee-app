@@ -3,7 +3,6 @@ import * as React from 'react';
 export default function Cart() {
   return (
     <svg
-      style={{ padding: '0.25rem' }}
       width="32"
       height="29"
       viewBox="0 0 32 29"
