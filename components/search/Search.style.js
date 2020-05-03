@@ -4,7 +4,6 @@ export const SearchRoot = styled.div`
   position: relative;
   display: flex;
   width: 100%;
-  padding: 0 1.5rem;
 
   @media (min-width: ${props => props.theme.screens.lg}) {
     padding: 0;
@@ -15,16 +14,12 @@ export const SearchIconWrapper = styled.div`
   position: absolute;
   top: 0;
   bottom: 0;
-  left: 1.5rem;
+  left: 0;
   display: flex;
   align-items: center;
   pointer-events: none;
   padding-left: 0.75rem;
   z-index: 10;
-
-  @media (min-width: ${props => props.theme.screens.lg}) {
-    left: 0;
-  }
 `;
 
 export const SearchInputLabel = styled.label`
@@ -33,7 +28,7 @@ export const SearchInputLabel = styled.label`
 
 export const SearchInput = styled.input`
   position: relative;
-  padding: 0.75rem 0.75rem 0.75rem 2.875rem;
+  padding: 0.75rem 0.75rem 0.75rem 2.75rem;
   background-color: ${props => props.theme.palette.primaryLightest};
   color: ${props => props.theme.palette.primaryDark};
   border-radius: 5px;
@@ -50,5 +45,10 @@ export const SearchInput = styled.input`
   &:focus {
     outline: none;
     box-shadow: 0 0 0 3px ${props => props.theme.palette.primaryLight};
+  }
+
+  @media (min-width: ${props => props.theme.screens.lg}) {
+    padding: 0.75rem 0.75rem 0.75rem 3rem;
+    width: calc(100% - 3.75rem);
   }
 `;

@@ -4,10 +4,31 @@ import Search from './Search';
 export default {
   title: 'Search',
   component: Search,
-  decorators: [
-    storyFn => <div style={{ padding: '24px' }}>{storyFn()}</div>,
-  ],
 };
 
-export const standard = () => <Search />;
-export const focused = () => <Search focused />;
+export const standard = () => {
+  const [search, setSearch] = React.useState('');
+
+  return (
+    <Search
+      value={search}
+      onChange={value => {
+        setSearch(value);
+      }}
+    />
+  );
+};
+
+export const focused = () => {
+  const [search, setSearch] = React.useState('');
+
+  return (
+    <Search
+      value={search}
+      onChange={value => {
+        setSearch(value);
+      }}
+      focused
+    />
+  );
+};
