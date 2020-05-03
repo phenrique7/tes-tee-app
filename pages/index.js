@@ -3,13 +3,26 @@ import Head from 'next/head';
 import styled from 'styled-components';
 import Header from '../components/header/Header';
 import Search from '../components/search/Search';
-import StyleProvider from '../styles/StyleProvider';
+import Filter from '../components/filter/Filter';
 import useMediaQuery from '../hooks/useMediaQuery';
 import { theme } from '../styles/theme';
 
 const Main = styled.main`
   margin: 0 auto;
   max-width: ${props => props.theme.screens.lg};
+`;
+
+const MobileSearch = styled.div`
+  padding: 0 1.5rem 1.5rem 1.5rem;
+`;
+
+const MainContent = styled.div`
+  display: flex;
+  padding: 0 1.5rem 1.5rem 1.5rem;
+
+  @media (min-width: ${props => props.theme.screens.lg}) {
+    padding: 0;
+  }
 `;
 
 export default function Home() {
@@ -42,8 +55,13 @@ export default function Home() {
           <Search value={search} onChange={onChangeSearch} />
         </Header>
         {mobileSearchActive && !desktopScreen && (
-          <Search value={search} onChange={onChangeSearch} focused />
+          <MobileSearch>
+            <Search value={search} onChange={onChangeSearch} focused />
+          </MobileSearch>
         )}
+        <MainContent>
+          <Filter />
+        </MainContent>
       </Main>
     </>
   );
