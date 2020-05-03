@@ -7,8 +7,17 @@ export default {
   component: Header,
 };
 
-export const standard = () => (
-  <Header onSearchClick={() => {}}>
-    <Search />
-  </Header>
-);
+export const standard = () => {
+  const [search, setSearch] = React.useState('');
+
+  return (
+    <Header onSearchClick={() => {}}>
+      <Search
+        value={search}
+        onChange={value => {
+          setSearch(value);
+        }}
+      />
+    </Header>
+  );
+};
