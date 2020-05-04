@@ -20,7 +20,7 @@ export default function Menu() {
     <MenuRoot>
       <MenuLogo>
         <MenuIconClose>
-          <IconButton onClick={() => {}}>
+          <IconButton onClick={() => {}} overrides={{ marginTop: 0 }}>
             <CloseIcon />
           </IconButton>
         </MenuIconClose>

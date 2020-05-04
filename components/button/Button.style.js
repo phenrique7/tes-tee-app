@@ -19,6 +19,7 @@ function backgroundColorStyle(backgroundColor, theme) {
 }
 
 export const ButtonRoot = styled.button`
+  cursor: pointer;
   padding: 10px 22px;
   border: transparent;
   border-radius: 5px;

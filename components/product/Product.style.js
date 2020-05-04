@@ -9,7 +9,7 @@ export const ProductRoot = styled.div`
 
 export const ProductImage = styled.img`
   margin-bottom: 1rem;
-  border: 3px solid ${props => props.theme.palette.primaryLight};
+  border: 3px solid ${props => props.theme.palette.primaryLighter};
   border-radius: 5px;
 `;
 
