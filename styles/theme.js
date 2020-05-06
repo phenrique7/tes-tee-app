@@ -15,13 +15,8 @@ export const theme = {
     xl: '1280px',
   },
   typography: {
-    fontFamily: [
-      'Carbin',
-      '-apple-system',
-      'BlinkMacSystemFont',
-      '"Helvetica Neue"',
-      'Arial',
-      'sans-serif',
-    ].join(','),
+    fontFamily: ['Cabin', '"Helvetica Neue"', 'Arial', 'sans-serif'].join(
+      ',',
+    ),
   },
 };
