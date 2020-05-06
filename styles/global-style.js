@@ -7,11 +7,6 @@ export const GlobalStyle = createGlobalStyle`
     box-sizing: border-box;
   }
 
-  ul[class],
-  ol[class] {
-    padding: 0;
-  }
-
   body,
   h1,
   h2,
@@ -19,8 +14,8 @@ export const GlobalStyle = createGlobalStyle`
   h4,
   a,
   p,
-  ul[class],
-  ol[class],
+  ul,
+  ol,
   li,
   figure,
   figcaption,
@@ -31,15 +26,8 @@ export const GlobalStyle = createGlobalStyle`
     margin: 0;
   }
 
-  body {
-    min-height: 100vh;
-    scroll-behavior: smooth;
-    text-rendering: optimizeSpeed;
-    line-height: 1.5;
-  }
-
-  ul[class],
-  ol[class] {
+  ul,
+  ol {
     list-style: none;
   }
 
@@ -76,5 +64,8 @@ export const GlobalStyle = createGlobalStyle`
 
   body {
     font-family: ${props => props.theme.typography.fontFamily};
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+    text-rendering: optimizeSpeed;
   }
 `;

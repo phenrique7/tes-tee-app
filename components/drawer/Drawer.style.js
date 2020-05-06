@@ -1,4 +1,4 @@
-import styled, { css, keyframes } from 'styled-components';
+import styled, { css } from 'styled-components';
 
 const drawerOpened = css`
   display: block;
@@ -25,24 +25,6 @@ export const DrawerRoot = styled.div`
   }
 `;
 
-const fadeOut = keyframes`
-  0% {
-    opacity: 1;
-  }
-  100% {
-    opacity: 0;
- }
-`;
-
-const fadeIn = keyframes`
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
-`;
-
 export const DrawerBackdrop = styled.div`
   position: fixed;
   top: 0;
@@ -50,7 +32,6 @@ export const DrawerBackdrop = styled.div`
   width: 100%;
   height: 100%;
   background: ${props => props.theme.palette.primaryLightest};
-  visibility: ${props => (props.open ? 'visible' : 'hidden')};
-  animation: 0.4s ${props => (props.open ? fadeIn : fadeOut)} ease-out;
-  transition: visibility 0.4s ease-out;
+  opacity: 0.5;
+  z-index: 2;
 `;

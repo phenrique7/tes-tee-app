@@ -20,8 +20,9 @@ function backgroundColorStyle(backgroundColor, theme) {
 
 export const MenuRoot = styled.div`
   width: 100%;
-  min-height: 100vh;
-  background: linear-gradient(180deg, #f0f5fe 70%, #103070 30%);
+  height: 100%;
+  display: flex;
+  flex-direction: column;
 `;
 
 export const MenuIconClose = styled.div`
@@ -81,4 +82,7 @@ export const MenuSocialNetworks = styled.div`
   padding: 1.25rem;
   display: flex;
   justify-content: center;
+  flex: 1;
+  align-items: flex-start;
+  background-color: ${props => props.theme.palette.primaryDarker};
 `;

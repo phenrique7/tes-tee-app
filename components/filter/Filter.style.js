@@ -14,6 +14,7 @@ const jokerColorBackground = `
 export const FilterRoot = styled.div`
   padding: 1.5rem;
   background: ${props => props.theme.palette.primaryLightest};
+  width: 100%;
   border-radius: 10px;
 `;
 
@@ -77,5 +78,10 @@ export const Size = styled.div`
       props.active
         ? props.theme.palette.primaryRegular
         : props.theme.palette.primaryLight};
+
+    @media (min-width: ${props => props.theme.screens.lg}) {
+      font-size: 0.75rem;
+      line-height: 0.937rem;
+    }
   }
 `;
