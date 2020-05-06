@@ -5,6 +5,8 @@ import Header from '../components/header/Header';
 import Search from '../components/search/Search';
 import Filter from '../components/filter/Filter';
 import useMediaQuery from '../hooks/useMediaQuery';
+import Menu from '../components/menu/Menu';
+import Drawer from '../components/drawer/Drawer';
 import { theme } from '../styles/theme';
 
 const Main = styled.main`
@@ -30,6 +32,8 @@ export default function Home() {
   const [mobileSearchActive, setMobileSearchActive] = React.useState(
     false,
   );
+  const [showMenu, setShowMenu] = React.useState(false);
+  const [showCart, setShowCart] = React.useState(false);
   const desktopScreen = useMediaQuery(`(min-width: ${theme.screens.lg})`);
 
   function onSearchClick() {
@@ -45,13 +49,22 @@ export default function Home() {
       <Head>
         <title>Tes Tee App</title>
         <link rel="icon" href="/favicon.ico" />
+        <meta
+          name="viewport"
+          content="width=device-width, initial-scale=1"
+        />
+        <meta name="theme-color" content="#000000" />
         <link
           href="https://fonts.googleapis.com/css2?family=Cabin:wght@400;700&display=swap"
           rel="stylesheet"
         />
       </Head>
       <Main>
-        <Header onSearchClick={onSearchClick}>
+        <Header
+          onMenuClick={() => setShowMenu(true)}
+          onSearchClick={onSearchClick}
+          onCartClick={() => setShowCart(true)}
+        >
           <Search value={search} onChange={onChangeSearch} />
         </Header>
         {mobileSearchActive && !desktopScreen && (
@@ -62,6 +75,9 @@ export default function Home() {
         <MainContent>
           <Filter />
         </MainContent>
+        <Drawer open={showMenu} onClose={() => setShowMenu(false)}>
+          <Menu onClose={() => setShowMenu(false)} />
+        </Drawer>
       </Main>
     </>
   );
