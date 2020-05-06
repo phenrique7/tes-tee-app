@@ -7,7 +7,7 @@ export default function Drawer(props) {
 
   return (
     <>
-      {open && <DrawerBackdrop onClick={onClose} />}
+      <DrawerBackdrop open={open} onClick={onClose} />
       <DrawerRoot open={open} anchor={anchor}>
         {children}
       </DrawerRoot>
@@ -22,6 +22,6 @@ Drawer.defaultProps = {
 Drawer.propTypes = {
   children: PropTypes.node.isRequired,
   open: PropTypes.bool.isRequired,
-  anchor: PropTypes.bool,
+  anchor: PropTypes.string,
   onClose: PropTypes.func.isRequired,
 };
