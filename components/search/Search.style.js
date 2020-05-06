@@ -19,7 +19,7 @@ export const SearchIconWrapper = styled.div`
   align-items: center;
   pointer-events: none;
   padding-left: 0.75rem;
-  z-index: 10;
+  z-index: 1;
 `;
 
 export const SearchInputLabel = styled.label`
