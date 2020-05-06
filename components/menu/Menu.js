@@ -1,4 +1,10 @@
 import * as React from 'react';
+import PropType from 'prop-types';
+import IconButton from '../icon-button/IconButton';
+import CloseIcon from '../icons/Close';
+import InstagramIcon from '../icons/Instagram';
+import FacebookIcon from '../icons/Facebook';
+import TwitterIcon from '../icons/Twitter';
 import {
   Logo,
   MenuIconClose,
@@ -9,18 +15,13 @@ import {
   MenuSocialNetworks,
   Slogan,
 } from './Menu.style';
-import IconButton from '../icon-button/IconButton';
-import CloseIcon from '../icons/Close';
-import InstagramIcon from '../icons/Instagram';
-import FacebookIcon from '../icons/Facebook';
-import TwitterIcon from '../icons/Twitter';
 
-export default function Menu() {
+export default function Menu({ onClose }) {
   return (
     <MenuRoot>
       <MenuLogo>
         <MenuIconClose>
-          <IconButton onClick={() => {}} overrides={{ marginTop: 0 }}>
+          <IconButton onClick={onClose} overrides={{ marginTop: 0 }}>
             <CloseIcon />
           </IconButton>
         </MenuIconClose>
@@ -66,3 +67,7 @@ export default function Menu() {
     </MenuRoot>
   );
 }
+
+Menu.propTypes = {
+  onClose: PropType.func.isRequired,
+};

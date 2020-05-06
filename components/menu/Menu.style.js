@@ -22,10 +22,6 @@ export const MenuRoot = styled.div`
   width: 100%;
   min-height: 100vh;
   background: linear-gradient(180deg, #f0f5fe 70%, #103070 30%);
-
-  @media (min-width: ${props => props.theme.screens.lg}) {
-    max-width: 360px;
-  }
 `;
 
 export const MenuIconClose = styled.div`
