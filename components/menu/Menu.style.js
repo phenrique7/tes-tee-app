@@ -24,7 +24,7 @@ export const MenuRoot = styled.div`
   background: linear-gradient(180deg, #f0f5fe 70%, #103070 30%);
 
   @media (min-width: ${props => props.theme.screens.lg}) {
-    max-width: 342px;
+    max-width: 360px;
   }
 `;
 
@@ -64,10 +64,6 @@ export const Slogan = styled.span`
   sup {
     font-size: 0.75rem;
   }
-`;
-
-export const MenuNav = styled.nav`
-  margin-top: 1rem;
 `;
 
 export const MenuNavItem = styled.li`
