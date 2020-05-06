@@ -6,8 +6,10 @@ export default {
   component: Button,
 };
 
+export const standard = () => <Button>Default</Button>;
+
 export const primaryLightest = () => (
-  <Button>Primary Lightest (Default)</Button>
+  <Button bg="primaryLightest">Primary Lightest</Button>
 );
 
 export const primaryLighter = () => (
@@ -36,4 +38,12 @@ export const primaryDarker = () => (
   </Button>
 );
 
+export const outlined = () => <Button outlined>Outlined</Button>;
+
 export const fullWidth = () => <Button fullWidth>Full Width</Button>;
+
+export const disabled = () => (
+  <Button bg="primaryRegular" color="primaryLightest" disabled>
+    Disabled
+  </Button>
+);
