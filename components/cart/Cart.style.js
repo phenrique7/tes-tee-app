@@ -1,8 +1,7 @@
 import styled from 'styled-components';
 
 export const CartRoot = styled.div`
-  width: 100%;
-  min-height: 100vh;
+  height: 100%;
   display: flex;
   flex-direction: column;
   background: ${props => props.theme.palette.primaryLightest};

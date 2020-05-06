@@ -8,7 +8,7 @@ const drawerOpened = css`
 
 export const DrawerRoot = styled.div`
   height: 100%;
-  position: absolute;
+  position: fixed;
   top: 0;
   width: 100%;
   z-index: 200;
@@ -19,6 +19,9 @@ export const DrawerRoot = styled.div`
 
   ${props => (props.anchor === 'left' ? 'left: 0;' : 'right: 0;')};
   ${props => props.open && drawerOpened};
+
+  overflow-x: hidden;
+  overflow-y: auto;
 
   @media (min-width: ${props => props.theme.screens.lg}) {
     max-width: 360px;

@@ -7,6 +7,7 @@ import Filter from '../components/filter/Filter';
 import useMediaQuery from '../hooks/useMediaQuery';
 import Menu from '../components/menu/Menu';
 import Drawer from '../components/drawer/Drawer';
+import Cart from '../components/cart/Cart';
 import { theme } from '../styles/theme';
 
 const Main = styled.main`
@@ -77,6 +78,18 @@ export default function Home() {
         </MainContent>
         <Drawer open={showMenu} onClose={() => setShowMenu(false)}>
           <Menu onClose={() => setShowMenu(false)} />
+        </Drawer>
+        <Drawer
+          open={showCart}
+          anchor="right"
+          onClose={() => setShowCart(false)}
+        >
+          <Cart
+            items={[]}
+            updateItem={() => {}}
+            removeItem={() => {}}
+            onClose={() => setShowCart(false)}
+          />
         </Drawer>
       </Main>
     </>
