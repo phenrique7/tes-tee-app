@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const Header = styled.header`
+export const HeaderRoot = styled.header`
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -14,6 +14,8 @@ export const Header = styled.header`
 export const ToolbarGroup = styled.div`
   display: flex;
   align-items: center;
+  justify-content: space-between;
+  min-width: 85px;
 `;
 
 export const Logo = styled.img`
@@ -34,6 +36,12 @@ export const MobileSearchIcon = styled.div`
   @media (min-width: ${props => props.theme.screens.lg}) {
     display: none;
   }
+`;
+
+export const MyCart = styled.div`
+  display: flex;
+  align-items: center;
+  cursor: pointer;
 `;
 
 export const CartText = styled.span`

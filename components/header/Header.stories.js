@@ -11,7 +11,11 @@ export const standard = () => {
   const [search, setSearch] = React.useState('');
 
   return (
-    <Header onSearchClick={() => {}}>
+    <Header
+      onMenuClick={() => {}}
+      onSearchClick={() => {}}
+      onCartClick={() => {}}
+    >
       <Search
         value={search}
         onChange={value => {

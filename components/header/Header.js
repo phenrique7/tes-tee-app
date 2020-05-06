@@ -5,22 +5,23 @@ import HamburgerIcon from '../icons/Hamburger';
 import SearchIcon from '../icons/Search';
 import CartIcon from '../icons/Cart';
 import {
-  CartText,
-  DesktopSearch,
-  Header as Toolbar,
   Logo,
-  MobileSearchIcon,
+  MyCart,
+  CartText,
   ToolbarGroup,
+  DesktopSearch,
+  MobileSearchIcon,
+  HeaderRoot as Toolbar,
 } from './Header.style';
 
 export default function Header(props) {
-  const { children, onSearchClick } = props;
+  const { children, onMenuClick, onSearchClick, onCartClick } = props;
 
   return (
     <Toolbar>
       <ToolbarGroup>
         <IconButton
-          onClick={() => {}}
+          onClick={onMenuClick}
           overrides={{ marginLeft: 0, paddingLeft: 0 }}
         >
           <HamburgerIcon />
@@ -34,13 +35,10 @@ export default function Header(props) {
             <SearchIcon />
           </IconButton>
         </MobileSearchIcon>
-        <IconButton
-          onClick={() => {}}
-          overrides={{ marginRight: 0, paddingRight: 0 }}
-        >
+        <MyCart role="button" onClick={onCartClick}>
           <CartIcon />
-        </IconButton>
-        <CartText>My Cart</CartText>
+          <CartText>My Cart</CartText>
+        </MyCart>
       </ToolbarGroup>
     </Toolbar>
   );
@@ -49,4 +47,6 @@ export default function Header(props) {
 Header.propTypes = {
   children: PropTypes.node.isRequired,
   onSearchClick: PropTypes.func.isRequired,
+  onMenuClick: PropTypes.func.isRequired,
+  onCartClick: PropTypes.func.isRequired,
 };
