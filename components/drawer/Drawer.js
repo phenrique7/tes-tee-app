@@ -7,7 +7,7 @@ export default function Drawer(props) {
 
   return (
     <>
-      <DrawerBackdrop open={open} onClick={onClose} />
+      {open && <DrawerBackdrop open={open} onClick={onClose} />}
       <DrawerRoot open={open} anchor={anchor}>
         {children}
       </DrawerRoot>
