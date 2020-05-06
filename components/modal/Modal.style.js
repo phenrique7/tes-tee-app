@@ -57,7 +57,7 @@ export const ModalProductName = styled.span`
   font-weight: bold;
   font-size: 1rem;
   line-height: 1.187rem;
-  color: ${props => props.theme.palette.primaryDarker};
+  color: ${props => props.theme.palette.primaryDark};
 `;
 
 export const ModalBody = styled.div`
@@ -76,12 +76,12 @@ export const ProductDetailsText = styled.span`
   color: ${props => props.theme.palette.primaryDark};
 `;
 
-export const AvailableProductSizes = styled.div`
+export const ProductSizes = styled.div`
   display: flex;
   flex-wrap: wrap;
 `;
 
-export const AvailableSize = styled.div`
+export const Size = styled.div`
   cursor: pointer;
   margin-top: 0.875rem;
   margin-right: 1rem;
@@ -106,57 +106,11 @@ export const AvailableSize = styled.div`
   }
 `;
 
-export const PurchaseOperations = styled.div`
+export const ProductQuantities = styled.div`
   display: flex;
   align-items: center;
   margin-top: 0.875rem;
   padding-bottom: 0.5rem;
-`;
-
-export const ActionOptions = styled.div`
-  display: flex;
-  align-items: center;
-`;
-
-export const PriceResult = styled.div`
-  display: flex;
-  align-items: center;
-  margin-left: 0.25rem;
-`;
-
-export const ProductQuantity = styled.span`
-  display: block;
-  padding: 0 0.5rem;
-  font-size: 1rem;
-  line-height: 1.187rem;
-  font-weight: bold;
-  color: ${props => props.theme.palette.primaryRegular};
-`;
-
-export const SelectedSize = styled.div`
-  border-radius: 39px;
-  padding: 0.125rem 0.75rem;
-  display: flex;
-  align-items: center;
-  margin: 0 0.5rem;
-  border: 3px solid ${props => props.theme.palette.primaryLight};
-
-  span {
-    font-size: 0.75rem;
-    line-height: 1rem;
-    font-weight: bold;
-    color: ${props => props.theme.palette.primaryRegular};
-  }
-`;
-
-export const TotalPrice = styled(ProductQuantity)`
-  padding-left: 0;
-
-  &::before {
-    content: '$';
-    display: inline-block;
-    margin-left: 0.5rem;
-  }
 `;
 
 export const ModalDivider = styled.hr`

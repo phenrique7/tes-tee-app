@@ -3,15 +3,12 @@ import PropTypes from 'prop-types';
 import IconButton from '../icon-button/IconButton';
 import Button from '../button/Button';
 import CloseIcon from '../icons/Close';
-import SubtractIcon from '../icons/Subtract';
-import AddIcon from '../icons/Add';
-import MultiplyIcon from '../icons/Multiply';
+import CostPrice from '../cost-price/CostPrice';
 import { PRODUCT_UNIT_PRICE } from '../../utils/constants';
-import EqualsIcon from '../icons/Equals';
-import { theme } from '../../styles/theme';
 import {
-  AvailableSize,
-  AvailableProductSizes,
+  Size,
+  ProductSizes,
+  ModalRoot,
   ModalBody,
   ModalContainer,
   ModalContent,
@@ -22,34 +19,50 @@ import {
   ModalProduct,
   ModalProductImage,
   ModalProductName,
-  ModalRoot,
   ProductPurchaseDetails,
   ProductDetailsText,
-  ActionOptions,
-  PriceResult,
-  ProductQuantity,
-  TotalPrice,
-  PurchaseOperations,
-  SelectedSize,
+  ProductQuantities,
 } from './Modal.style';
 
 export default function Modal(props) {
   const {
     showModal,
+    productId,
     productImage,
     productName,
     productSizes,
     closeModal,
   } = props;
-  const [activeAvailableSize, setActiveAvailableSize] = React.useState(
-    productSizes[0],
-  );
-  const [totalPrice, setTotalPrice] = React.useState(0);
-  const [quantity, setQuantity] = React.useState(1);
+  const [validAmount, setValidAmount] = React.useState(true);
+  const [activeSize, setActiveSize] = React.useState(productSizes[0]);
+  const [product, setProduct] = React.useState({
+    id: productId,
+    quantity: 1,
+    size: productSizes[0],
+    totalPrice: PRODUCT_UNIT_PRICE,
+  });
 
-  React.useEffect(() => {
-    setTotalPrice(quantity * PRODUCT_UNIT_PRICE);
-  }, [quantity]);
+  function handleChangePrice(productData) {
+    if (productData.quantity === 0) {
+      setValidAmount(false);
+    } else {
+      setValidAmount(true);
+    }
+
+    setProduct(prevState => ({ ...prevState, ...productData }));
+  }
+
+  function handleChangeSize(size) {
+    setActiveSize(size);
+    setProduct(prevState => ({ ...prevState, size }));
+  }
+
+  function addToCart() {
+    if (validAmount) {
+      console.log(product);
+      closeModal();
+    }
+  }
 
   return showModal ? (
     <>
@@ -75,77 +88,42 @@ export default function Modal(props) {
             <ModalBody>
               <ProductPurchaseDetails>
                 <ProductDetailsText>Which size?</ProductDetailsText>
-                <AvailableProductSizes>
+                <ProductSizes>
                   {productSizes.map(size => (
-                    <AvailableSize
+                    <Size
                       key={size}
                       tabIndex="0"
                       role="button"
-                      active={activeAvailableSize === size}
+                      active={activeSize === size}
                       onClick={() => {
-                        setActiveAvailableSize(size);
+                        handleChangeSize(size);
                       }}
                       onKeyDown={() => {
-                        setActiveAvailableSize(size);
+                        handleChangeSize(size);
                       }}
                     >
                       <span>{size}</span>
-                    </AvailableSize>
+                    </Size>
                   ))}
-                </AvailableProductSizes>
+                </ProductSizes>
               </ProductPurchaseDetails>
               <ProductPurchaseDetails>
                 <ProductDetailsText>How many?</ProductDetailsText>
-                <PurchaseOperations>
-                  <ActionOptions>
-                    <IconButton
-                      overrides={{
-                        marginLeft: 0,
-                        width: 25,
-                        height: 25,
-                        background: theme.palette.primaryLighter,
-                        borderRadius: '50%',
-                      }}
-                      onClick={() => {
-                        if (quantity > 1) {
-                          setQuantity(quantity - 1);
-                        }
-                      }}
-                    >
-                      <SubtractIcon />
-                    </IconButton>
-                    <IconButton
-                      overrides={{
-                        width: 25,
-                        height: 25,
-                        background: theme.palette.primaryLighter,
-                        borderRadius: '50%',
-                      }}
-                      onClick={() => {
-                        setQuantity(quantity + 1);
-                      }}
-                    >
-                      <AddIcon />
-                    </IconButton>
-                  </ActionOptions>
-                  <PriceResult>
-                    <ProductQuantity>{quantity}</ProductQuantity>
-                    <MultiplyIcon />
-                    <SelectedSize>
-                      <span>{activeAvailableSize}</span>
-                    </SelectedSize>
-                    <EqualsIcon />
-                    <TotalPrice>{totalPrice}</TotalPrice>
-                  </PriceResult>
-                </PurchaseOperations>
+                <ProductQuantities>
+                  <CostPrice
+                    size={activeSize}
+                    handleChange={handleChangePrice}
+                  />
+                </ProductQuantities>
               </ProductPurchaseDetails>
             </ModalBody>
             <ModalDivider />
             <ModalFooter>
               <Button
-                onClick={closeModal}
+                onClick={addToCart}
                 bg="primaryRegular"
                 color="primaryLightest"
+                disabled={!validAmount}
                 fullWidth
               >
                 Add to cart
@@ -161,6 +139,7 @@ export default function Modal(props) {
 
 Modal.propTypes = {
   showModal: PropTypes.bool.isRequired,
+  productId: PropTypes.string.isRequired,
   productImage: PropTypes.string.isRequired,
   productName: PropTypes.string.isRequired,
   productSizes: PropTypes.array.isRequired,
