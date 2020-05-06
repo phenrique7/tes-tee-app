@@ -6,10 +6,6 @@ export const CartRoot = styled.div`
   display: flex;
   flex-direction: column;
   background: ${props => props.theme.palette.primaryLightest};
-
-  @media (min-width: ${props => props.theme.screens.lg}) {
-    max-width: 360px;
-  }
 `;
 
 export const CartHeader = styled.div`

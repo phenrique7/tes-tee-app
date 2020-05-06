@@ -1,6 +1,8 @@
 import React from 'react';
 import Cart from './Cart';
 import uuid from '../../utils/uuid';
+import Button from '../button/Button';
+import Drawer from '../drawer/Drawer';
 
 export default {
   title: 'Cart',
@@ -45,14 +47,37 @@ const cartProducts = [
   },
 ];
 
-export const empty = () => (
-  <Cart items={[]} updateItem={() => {}} removeItem={() => {}} />
-);
+export const empty = () => {
+  const [showCart, setShowCart] = React.useState(false);
+
+  function onCloseCart() {
+    setShowCart(false);
+  }
+
+  return (
+    <>
+      <Button onClick={() => setShowCart(true)}>Open cart</Button>
+      <Drawer open={showCart} anchor="right" onClose={onCloseCart}>
+        <Cart
+          items={[]}
+          updateItem={() => {}}
+          removeItem={() => {}}
+          onClose={onCloseCart}
+        />
+      </Drawer>
+    </>
+  );
+};
 
 export const items = () => {
   const [cartItems, setCarItems] = React.useState(
     cartProducts.slice(0, cartProducts.length - 2),
   );
+  const [showCart, setShowCart] = React.useState(false);
+
+  function onCloseCart() {
+    setShowCart(false);
+  }
 
   function updateItem(id, data) {
     setCarItems(prevState => {
@@ -70,37 +95,16 @@ export const items = () => {
   }
 
   return (
-    <Cart
-      items={cartItems}
-      updateItem={updateItem}
-      removeItem={removeItem}
-    />
-  );
-};
-
-export const overflowItems = () => {
-  const [cartItems, setCarItems] = React.useState(cartProducts);
-
-  function updateItem(id, data) {
-    setCarItems(prevState => {
-      return prevState.map(item => {
-        if (item.id === id) {
-          return { ...item, ...data };
-        }
-        return item;
-      });
-    });
-  }
-
-  function removeItem(id) {
-    setCarItems(prevState => prevState.filter(item => item.id !== id));
-  }
-
-  return (
-    <Cart
-      items={cartItems}
-      updateItem={updateItem}
-      removeItem={removeItem}
-    />
+    <>
+      <Button onClick={() => setShowCart(true)}>Open cart</Button>
+      <Drawer open={showCart} anchor="right" onClose={onCloseCart}>
+        <Cart
+          items={cartItems}
+          updateItem={updateItem}
+          removeItem={removeItem}
+          onClose={onCloseCart}
+        />
+      </Drawer>
+    </>
   );
 };

@@ -25,7 +25,8 @@ import {
   ItemCostPrice,
 } from './Cart.style';
 
-export default function Cart({ items, updateItem, removeItem }) {
+export default function Cart(props) {
+  const { items, updateItem, removeItem, onClose } = props;
   const [total, setTotal] = React.useState(0);
 
   React.useEffect(() => {
@@ -55,7 +56,7 @@ export default function Cart({ items, updateItem, removeItem }) {
           <CartHeaderText>My cart</CartHeaderText>
         </div>
         <IconButton
-          onClick={() => {}}
+          onClick={onClose}
           overrides={{ margin: 0, padding: 0 }}
         >
           <CloseIcon />
@@ -118,4 +119,5 @@ Cart.propTypes = {
   items: PropTypes.array.isRequired,
   updateItem: PropTypes.func.isRequired,
   removeItem: PropTypes.func.isRequired,
+  onClose: PropTypes.func.isRequired,
 };
