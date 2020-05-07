@@ -11,6 +11,7 @@ import Cart from '../components/cart/Cart';
 import Button from '../components/button/Button';
 import Product from '../components/product/Product';
 import { useBodyOverflow } from '../hooks/useBodyOverflow';
+import Modal from '../components/modal/Modal';
 import {
   Main,
   MainContent,
@@ -26,12 +27,46 @@ export default function Home({ shirts }) {
   const [showMenu, setShowMenu] = React.useState(false);
   const [showCart, setShowCart] = React.useState(false);
   const [showModal, setShowModal] = React.useState(false);
+  const [products, setProducts] = React.useState([]);
+  const [cartItems, setCartItems] = React.useState([]);
+  const [selectedProduct, setSelectedProduct] = React.useState({
+    id: '',
+    image: '',
+    name: '',
+    sizes: [],
+  });
 
   useBodyOverflow(showCart, showMenu);
 
+  function filterColor(color) {
+    const filteredProducts = shirts.filter(
+      shirt => color === 'all' || shirt.color === color,
+    );
+
+    setProducts(filteredProducts);
+  }
+
+  function filterSize(size) {
+    const filteredProducts = shirts.filter(
+      shirt => size === 'all' || shirt.sizes.some(sz => sz === size),
+    );
+
+    setProducts(filteredProducts);
+  }
+
   React.useEffect(() => {
     if (search) {
-      setMobileSearchActive(true);
+      if (!mobileSearchActive) {
+        setMobileSearchActive(true);
+      }
+
+      const filteredProducts = shirts.filter(shirt =>
+        new RegExp(search, 'i').test(shirt.name),
+      );
+
+      setProducts(filteredProducts);
+    } else {
+      setProducts(shirts);
     }
   }, [search]);
 
@@ -41,6 +76,53 @@ export default function Home({ shirts }) {
 
   function onChangeSearch(value) {
     setSearch(value);
+  }
+
+  function onSelectedProduct(product) {
+    setSelectedProduct(product);
+    setShowModal(true);
+  }
+
+  function addProductToCart(product) {
+    const hasCartProduct = cartItems.some(
+      item => item.id === product.id && item.size === product.size,
+    );
+
+    if (hasCartProduct) {
+      const updatedCartItems = cartItems.map(cartItem => {
+        if (cartItem.id === product.id) {
+          console.log('cartItem', cartItem, 'product', product);
+          return {
+            ...cartItem,
+            quantity: cartItem.quantity + product.quantity,
+          };
+        }
+        return cartItem;
+      });
+
+      setCartItems(updatedCartItems);
+    } else {
+      const newCartItems = cartItems.slice(0);
+      newCartItems.push(product);
+      setCartItems(newCartItems);
+    }
+
+    setShowCart(true);
+  }
+
+  function updateCartItem(id, data) {
+    setCartItems(prevState => {
+      return prevState.map(item => {
+        if (item.id === id) {
+          return { ...item, ...data };
+        }
+        return item;
+      });
+    });
+  }
+
+  function removeCartItem(id) {
+    setCartItems(prevState => prevState.filter(item => item.id !== id));
   }
 
   return (
@@ -73,20 +155,21 @@ export default function Home({ shirts }) {
         )}
         <MainContent>
           <div>
-            <Filter />
+            <Filter filterColor={filterColor} filterSize={filterSize} />
           </div>
           <div>
             <ProductList>
-              {shirts.map(shirt => (
-                <div key={shirt.id}>
+              {products.map(product => (
+                <div key={product.id}>
                   <Product
-                    name={`Tes-tee ${shirt.color} cotton shirt`}
-                    image={shirt.image}
-                    sizes={shirt.sizes}
+                    name={`Tes-tee ${product.color} cotton shirt`}
+                    image={product.image}
+                    sizes={product.sizes}
                   >
                     <Button
                       bg="primaryRegular"
                       color="primaryLightest"
+                      onClick={() => onSelectedProduct(product)}
                       fullWidth
                     >
                       Add to cart
@@ -97,6 +180,15 @@ export default function Home({ shirts }) {
             </ProductList>
           </div>
         </MainContent>
+        <Modal
+          showModal={showModal}
+          productId={selectedProduct.id}
+          productImage={selectedProduct.image}
+          productName={selectedProduct.name}
+          productSizes={selectedProduct.sizes}
+          onClickAdd={addProductToCart}
+          closeModal={() => setShowModal(false)}
+        />
         <Drawer open={showMenu} onClose={() => setShowMenu(false)}>
           <Menu onClose={() => setShowMenu(false)} />
         </Drawer>
@@ -106,9 +198,10 @@ export default function Home({ shirts }) {
           onClose={() => setShowCart(false)}
         >
           <Cart
-            items={[]}
-            updateItem={() => {}}
-            removeItem={() => {}}
+            items={cartItems}
+            updateItem={updateCartItem}
+            removeItem={removeCartItem}
+            clear={() => setCartItems([])}
             onClose={() => setShowCart(false)}
           />
         </Drawer>
