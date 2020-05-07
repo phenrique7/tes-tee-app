@@ -20,8 +20,12 @@ export default function CostPrice(props) {
   const [quantity, setQuantity] = React.useState(units);
 
   React.useEffect(() => {
+    setQuantity(units);
+  }, [units]);
+
+  React.useEffect(() => {
     const totalPrice = quantity * PRODUCT_UNIT_PRICE;
-    handleChange({ quantity, totalPrice });
+    handleChange({ quantity, size, totalPrice });
   }, [quantity]);
 
   function subtractUnit() {

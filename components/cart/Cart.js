@@ -39,7 +39,7 @@ export default function Cart(props) {
 
   function handleChangeItem(id, item) {
     if (item.quantity === 0) {
-      removeItem(id);
+      removeItem(id, item);
     } else {
       updateItem(id, item);
     }

@@ -83,7 +83,7 @@ export const items = () => {
   function updateItem(id, data) {
     setCartItems(prevState => {
       return prevState.map(item => {
-        if (item.id === id) {
+        if (item.id === id && item.size === data.size) {
           return { ...item, ...data };
         }
         return item;
@@ -91,8 +91,12 @@ export const items = () => {
     });
   }
 
-  function removeItem(id) {
-    setCartItems(prevState => prevState.filter(item => item.id !== id));
+  function removeItem(id, data) {
+    setCartItems(prevState =>
+      prevState.filter(
+        item => !(item.id === id && item.size === data.size),
+      ),
+    );
   }
 
   return (
