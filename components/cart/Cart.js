@@ -68,8 +68,8 @@ export default function Cart(props) {
         ) : (
           <>
             <CartItems>
-              {items.map(item => (
-                <Item key={item.id}>
+              {items.map((item, index) => (
+                <Item key={`${item.id}-${index}`}>
                   <ItemImage src={item.image} alt={item.name} />
                   <div>
                     <ItemName>{item.name}</ItemName>
