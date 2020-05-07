@@ -6,4 +6,6 @@ export default {
   component: Filter,
 };
 
-export const standard = () => <Filter />;
+export const standard = () => (
+  <Filter filterColor={() => {}} filterSize={() => {}} />
+);
