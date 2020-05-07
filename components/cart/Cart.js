@@ -26,7 +26,7 @@ import {
 } from './Cart.style';
 
 export default function Cart(props) {
-  const { items, updateItem, removeItem, onClose } = props;
+  const { items, updateItem, removeItem, clear, onClose } = props;
   const [total, setTotal] = React.useState(0);
 
   React.useEffect(() => {
@@ -87,7 +87,12 @@ export default function Cart(props) {
               ))}
             </CartItems>
             <CartEmptyButton>
-              <Button color="primaryLight" outlined fullWidth>
+              <Button
+                color="primaryLight"
+                onClick={clear}
+                outlined
+                fullWidth
+              >
                 Empty cart
               </Button>
             </CartEmptyButton>
@@ -119,5 +124,6 @@ Cart.propTypes = {
   items: PropTypes.array.isRequired,
   updateItem: PropTypes.func.isRequired,
   removeItem: PropTypes.func.isRequired,
+  clear: PropTypes.func.isRequired,
   onClose: PropTypes.func.isRequired,
 };

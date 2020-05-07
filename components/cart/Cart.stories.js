@@ -62,6 +62,7 @@ export const empty = () => {
           items={[]}
           updateItem={() => {}}
           removeItem={() => {}}
+          clear={() => {}}
           onClose={onCloseCart}
         />
       </Drawer>
@@ -70,7 +71,7 @@ export const empty = () => {
 };
 
 export const items = () => {
-  const [cartItems, setCarItems] = React.useState(
+  const [cartItems, setCartItems] = React.useState(
     cartProducts.slice(0, cartProducts.length - 2),
   );
   const [showCart, setShowCart] = React.useState(false);
@@ -80,7 +81,7 @@ export const items = () => {
   }
 
   function updateItem(id, data) {
-    setCarItems(prevState => {
+    setCartItems(prevState => {
       return prevState.map(item => {
         if (item.id === id) {
           return { ...item, ...data };
@@ -91,7 +92,7 @@ export const items = () => {
   }
 
   function removeItem(id) {
-    setCarItems(prevState => prevState.filter(item => item.id !== id));
+    setCartItems(prevState => prevState.filter(item => item.id !== id));
   }
 
   return (
@@ -102,6 +103,7 @@ export const items = () => {
           items={cartItems}
           updateItem={updateItem}
           removeItem={removeItem}
+          clear={() => setCartItems([])}
           onClose={onCloseCart}
         />
       </Drawer>
