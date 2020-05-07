@@ -90,8 +90,7 @@ export default function Home({ shirts }) {
 
     if (hasCartProduct) {
       const updatedCartItems = cartItems.map(cartItem => {
-        if (cartItem.id === product.id) {
-          console.log('cartItem', cartItem, 'product', product);
+        if (cartItem.id === product.id && cartItem.size === product.size) {
           return {
             ...cartItem,
             quantity: cartItem.quantity + product.quantity,
@@ -113,7 +112,7 @@ export default function Home({ shirts }) {
   function updateCartItem(id, data) {
     setCartItems(prevState => {
       return prevState.map(item => {
-        if (item.id === id) {
+        if (item.id === id && item.size === data.size) {
           return { ...item, ...data };
         }
         return item;
@@ -121,8 +120,10 @@ export default function Home({ shirts }) {
     });
   }
 
-  function removeCartItem(id) {
-    setCartItems(prevState => prevState.filter(item => item.id !== id));
+  function removeCartItem(id, data) {
+    setCartItems(items =>
+      items.filter(item => !(item.id === id && item.size === data.size)),
+    );
   }
 
   return (
