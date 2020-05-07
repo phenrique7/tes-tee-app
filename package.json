@@ -1,7 +1,17 @@
 {
   "name": "tes-tee-app",
   "version": "0.1.0",
-  "private": true,
+  "description": "A simple e-commerce page for a super fake shirt company",
+  "author": "Paulo Henrique",
+  "license": "MIT",
+  "homepage": "https://github.com/phenrique7/tes-tee-app#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/phenrique7/tes-tee-app.git"
+  },
+  "bugs": {
+    "url": "https://github.com/phenrique7/tes-tee-app/issues"
+  },
   "scripts": {
     "dev": "next dev",
     "build": "next build",
