@@ -30,7 +30,6 @@ export const ProductSizes = styled.div`
 `;
 
 export const Size = styled.div`
-  cursor: pointer;
   margin-top: 1rem;
   margin-right: 0.5rem;
   border-radius: 39px;
