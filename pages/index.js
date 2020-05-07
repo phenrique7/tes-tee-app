@@ -2,7 +2,6 @@ import * as React from 'react';
 import fs from 'fs';
 import path from 'path';
 import Head from 'next/head';
-import styled from 'styled-components';
 import Header from '../components/header/Header';
 import Search from '../components/search/Search';
 import Filter from '../components/filter/Filter';
@@ -14,52 +13,12 @@ import Button from '../components/button/Button';
 import Product from '../components/product/Product';
 import { useBodyOverflow } from '../hooks/useBodyOverflow';
 import { theme } from '../styles/theme';
-
-const Main = styled.main`
-  margin: 0 auto;
-  max-width: ${props => props.theme.screens.xl};
-`;
-
-const MobileSearch = styled.div`
-  padding: 0 1.5rem 1.5rem 1.5rem;
-`;
-
-const MainContent = styled.div`
-  display: flex;
-  padding: 0 1.5rem 1.5rem 1.5rem;
-  flex-wrap: wrap;
-
-  @media (min-width: ${props => props.theme.screens.lg}) {
-    padding: 0;
-
-    > div:first-child {
-      padding: 0 0.75rem;
-      flex-grow: 0;
-      max-width: 24%;
-      flex-basis: 24%;
-    }
-
-    > div:last-child {
-      flex-grow: 0;
-      max-width: 76%;
-      flex-basis: 76%;
-    }
-  }
-`;
-
-const ProductList = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-
-  @media (min-width: ${props => props.theme.screens.lg}) {
-    > div {
-      padding: 0 0.75rem;
-      flex-grow: 0;
-      max-width: 33.333%;
-      flex-basis: 33.333%;
-    }
-  }
-`;
+import {
+  Main,
+  MainContent,
+  MobileSearch,
+  ProductList,
+} from '../styles/views/home';
 
 export default function Home({ shirts }) {
   const [search, setSearch] = React.useState('');
