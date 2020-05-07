@@ -7,6 +7,10 @@ export const Main = styled.main`
 
 export const MobileSearch = styled.div`
   padding: 0 1.5rem 1.5rem 1.5rem;
+
+  @media (min-width: ${props => props.theme.screens.lg}) {
+    display: none;
+  }
 `;
 
 export const MainContent = styled.div`

@@ -5,14 +5,12 @@ import Head from 'next/head';
 import Header from '../components/header/Header';
 import Search from '../components/search/Search';
 import Filter from '../components/filter/Filter';
-import useMediaQuery from '../hooks/useMediaQuery';
 import Menu from '../components/menu/Menu';
 import Drawer from '../components/drawer/Drawer';
 import Cart from '../components/cart/Cart';
 import Button from '../components/button/Button';
 import Product from '../components/product/Product';
 import { useBodyOverflow } from '../hooks/useBodyOverflow';
-import { theme } from '../styles/theme';
 import {
   Main,
   MainContent,
@@ -28,7 +26,6 @@ export default function Home({ shirts }) {
   const [showMenu, setShowMenu] = React.useState(false);
   const [showCart, setShowCart] = React.useState(false);
 
-  const desktopScreen = useMediaQuery(`(min-width: ${theme.screens.lg})`);
   useBodyOverflow(showCart, showMenu);
 
   function onSearchClick() {
@@ -62,7 +59,7 @@ export default function Home({ shirts }) {
         >
           <Search value={search} onChange={onChangeSearch} />
         </Header>
-        {mobileSearchActive && !desktopScreen && (
+        {mobileSearchActive && (
           <MobileSearch>
             <Search value={search} onChange={onChangeSearch} focused />
           </MobileSearch>
