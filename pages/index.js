@@ -25,8 +25,15 @@ export default function Home({ shirts }) {
   );
   const [showMenu, setShowMenu] = React.useState(false);
   const [showCart, setShowCart] = React.useState(false);
+  const [showModal, setShowModal] = React.useState(false);
 
   useBodyOverflow(showCart, showMenu);
+
+  React.useEffect(() => {
+    if (search) {
+      setMobileSearchActive(true);
+    }
+  }, [search]);
 
   function onSearchClick() {
     setMobileSearchActive(prevState => !prevState);

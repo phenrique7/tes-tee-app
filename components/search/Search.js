@@ -8,7 +8,8 @@ import {
   SearchRoot,
 } from './Search.style';
 
-export default function Search({ focused, value, onChange }) {
+export default function Search(props) {
+  const { focused, value, onChange } = props;
   const inputRef = React.useRef();
 
   React.useEffect(() => {
