@@ -1,4 +1,6 @@
 import * as React from 'react';
+import fs from 'fs';
+import path from 'path';
 import Head from 'next/head';
 import styled from 'styled-components';
 import Header from '../components/header/Header';
@@ -8,11 +10,14 @@ import useMediaQuery from '../hooks/useMediaQuery';
 import Menu from '../components/menu/Menu';
 import Drawer from '../components/drawer/Drawer';
 import Cart from '../components/cart/Cart';
+import Button from '../components/button/Button';
+import Product from '../components/product/Product';
+import { useBodyOverflow } from '../hooks/useBodyOverflow';
 import { theme } from '../styles/theme';
 
 const Main = styled.main`
   margin: 0 auto;
-  max-width: ${props => props.theme.screens.lg};
+  max-width: ${props => props.theme.screens.xl};
 `;
 
 const MobileSearch = styled.div`
@@ -22,20 +27,50 @@ const MobileSearch = styled.div`
 const MainContent = styled.div`
   display: flex;
   padding: 0 1.5rem 1.5rem 1.5rem;
+  flex-wrap: wrap;
 
   @media (min-width: ${props => props.theme.screens.lg}) {
     padding: 0;
+
+    > div:first-child {
+      padding: 0 0.75rem;
+      flex-grow: 0;
+      max-width: 24%;
+      flex-basis: 24%;
+    }
+
+    > div:last-child {
+      flex-grow: 0;
+      max-width: 76%;
+      flex-basis: 76%;
+    }
   }
 `;
 
-export default function Home() {
+const ProductList = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+
+  @media (min-width: ${props => props.theme.screens.lg}) {
+    > div {
+      padding: 0 0.75rem;
+      flex-grow: 0;
+      max-width: 33.333%;
+      flex-basis: 33.333%;
+    }
+  }
+`;
+
+export default function Home({ shirts }) {
   const [search, setSearch] = React.useState('');
   const [mobileSearchActive, setMobileSearchActive] = React.useState(
     false,
   );
   const [showMenu, setShowMenu] = React.useState(false);
   const [showCart, setShowCart] = React.useState(false);
+
   const desktopScreen = useMediaQuery(`(min-width: ${theme.screens.lg})`);
+  useBodyOverflow(showCart, showMenu);
 
   function onSearchClick() {
     setMobileSearchActive(prevState => !prevState);
@@ -74,7 +109,30 @@ export default function Home() {
           </MobileSearch>
         )}
         <MainContent>
-          <Filter />
+          <div>
+            <Filter />
+          </div>
+          <div>
+            <ProductList>
+              {shirts.map(shirt => (
+                <div key={shirt.id}>
+                  <Product
+                    name={`Tes-tee ${shirt.color} cotton shirt`}
+                    image={shirt.image}
+                    sizes={shirt.sizes}
+                  >
+                    <Button
+                      bg="primaryRegular"
+                      color="primaryLightest"
+                      fullWidth
+                    >
+                      Add to cart
+                    </Button>
+                  </Product>
+                </div>
+              ))}
+            </ProductList>
+          </div>
         </MainContent>
         <Drawer open={showMenu} onClose={() => setShowMenu(false)}>
           <Menu onClose={() => setShowMenu(false)} />
@@ -94,4 +152,22 @@ export default function Home() {
       </Main>
     </>
   );
+}
+
+export async function getStaticProps() {
+  const shirtsDirectory = path.join(process.cwd(), '__mocks__');
+  const filenames = fs.readdirSync(shirtsDirectory);
+
+  const [shirts] = filenames.map(filename => {
+    const filePath = path.join(shirtsDirectory, filename);
+    const fileContents = fs.readFileSync(filePath, 'utf8');
+
+    return JSON.parse(fileContents);
+  });
+
+  return {
+    props: {
+      shirts,
+    },
+  };
 }

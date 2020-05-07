@@ -7,7 +7,7 @@ export const HeaderRoot = styled.header`
   padding: 1.5rem;
 
   @media (min-width: ${props => props.theme.screens.lg}) {
-    margin-top: 0.375rem;
+    margin: 0.375rem 0;
   }
 `;
 

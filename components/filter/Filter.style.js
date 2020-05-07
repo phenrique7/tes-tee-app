@@ -16,6 +16,7 @@ export const FilterRoot = styled.div`
   background: ${props => props.theme.palette.primaryLightest};
   width: 100%;
   border-radius: 10px;
+  margin-bottom: 1.5rem;
 `;
 
 export const FilterCategory = styled.div`
