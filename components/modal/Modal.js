@@ -31,16 +31,29 @@ export default function Modal(props) {
     productImage,
     productName,
     productSizes,
+    onClickAdd,
     closeModal,
   } = props;
   const [validAmount, setValidAmount] = React.useState(true);
-  const [activeSize, setActiveSize] = React.useState(productSizes[0]);
+  const [activeSize, setActiveSize] = React.useState('');
   const [product, setProduct] = React.useState({
-    id: productId,
-    quantity: 1,
-    size: productSizes[0],
-    totalPrice: PRODUCT_UNIT_PRICE,
+    id: '',
+    quantity: 0,
+    size: '',
+    totalPrice: 0,
   });
+
+  React.useEffect(() => {
+    if (showModal) {
+      setActiveSize(productSizes[0]);
+      setProduct({
+        id: productId,
+        quantity: 1,
+        size: productSizes[0],
+        totalPrice: PRODUCT_UNIT_PRICE,
+      });
+    }
+  }, [showModal]);
 
   function handleChangePrice(productData) {
     if (productData.quantity === 0) {
@@ -59,8 +72,17 @@ export default function Modal(props) {
 
   function addToCart() {
     if (validAmount) {
-      console.log(product);
       closeModal();
+
+      const pickedProduct = {
+        id: productId,
+        name: productName,
+        image: productImage,
+        size: product.size,
+        quantity: product.quantity,
+      };
+
+      onClickAdd(pickedProduct);
     }
   }
 
@@ -143,5 +165,6 @@ Modal.propTypes = {
   productImage: PropTypes.string.isRequired,
   productName: PropTypes.string.isRequired,
   productSizes: PropTypes.array.isRequired,
+  onClickAdd: PropTypes.func.isRequired,
   closeModal: PropTypes.func.isRequired,
 };

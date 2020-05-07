@@ -21,6 +21,7 @@ export const standard = () => {
         productImage="/assets/shirts/blue-tee.png"
         productName="TES-TEE blue cotton shirt"
         productSizes={['XS', 'L', 'XL']}
+        onClickAdd={() => {}}
         closeModal={() => setShowModal(false)}
       />
     </>
@@ -37,6 +38,7 @@ export const content = () => {
       productImage="/assets/shirts/red-tee.png"
       productName="TES-TEE red cotton shirt"
       productSizes={['XS', 'XXL', 'L', 'XL']}
+      onClickAdd={() => {}}
       closeModal={() => {}}
     />
   );
