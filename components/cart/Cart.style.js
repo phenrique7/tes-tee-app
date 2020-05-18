@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { IconButtonRoot } from '../icon-button/IconButton.style';
 
 export const CartRoot = styled.div`
   height: 100%;
@@ -16,6 +17,11 @@ export const CartHeader = styled.div`
   & > div:first-child {
     display: flex;
   }
+`;
+
+export const CartHeaderClose = styled(IconButtonRoot)`
+  margin: 0;
+  padding: 0;
 `;
 
 export const CartHeaderText = styled.span`

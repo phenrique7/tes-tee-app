@@ -1,29 +1,28 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import {
-  ProductImage,
-  ProductName,
-  ProductRoot,
-  ProductSizes,
-  Size,
-} from './Product.style';
+import * as S from './Product.style';
 
+/**
+ * @param {ProductProps} props
+ * @returns {React.ReactNode}
+ * @constructor
+ */
 export default function Product(props) {
   const { children, name, image, sizes } = props;
 
   return (
-    <ProductRoot>
-      <ProductImage src={image} alt={name} />
-      <ProductName>{name}</ProductName>
-      <ProductSizes>
+    <S.ProductRoot>
+      <S.ProductImage src={image} alt={name} />
+      <S.ProductName>{name}</S.ProductName>
+      <S.ProductSizes>
         {sizes.map(size => (
-          <Size key={size}>
+          <S.Size key={size}>
             <span>{size}</span>
-          </Size>
+          </S.Size>
         ))}
-      </ProductSizes>
+      </S.ProductSizes>
       {children}
-    </ProductRoot>
+    </S.ProductRoot>
   );
 }
 

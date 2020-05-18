@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { IconButtonRoot } from '../icon-button/IconButton.style';
 
 function colorStyle(color, theme) {
   if (color) {
@@ -33,6 +34,10 @@ export const MenuIconClose = styled.div`
   @media (min-width: ${props => props.theme.screens.lg}) {
     display: none;
   }
+`;
+
+export const MenuIconCloseButton = styled(IconButtonRoot)`
+  margin-top: 0;
 `;
 
 export const MenuLogo = styled.div`
@@ -85,4 +90,8 @@ export const MenuSocialNetworks = styled.div`
   flex: 1;
   align-items: flex-start;
   background-color: ${props => props.theme.palette.primaryDarker};
+`;
+
+export const MenuSocialNetworksButton = styled(IconButtonRoot)`
+  padding: 0;
 `;

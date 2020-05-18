@@ -1,5 +1,9 @@
 import * as React from 'react';
 
+/**
+ * @param {boolean} showCart
+ * @param {boolean} showMenu
+ */
 export function useBodyOverflow(showCart, showMenu) {
   React.useEffect(() => {
     if (showCart || showMenu) {

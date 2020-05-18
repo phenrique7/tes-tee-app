@@ -2,7 +2,17 @@
   "env": {
     "browser": true,
     "es6": true,
-    "jest": true
+    "jest": true,
+    "node": true
+  },
+  "extends": [
+    "eslint:recommended",
+    "plugin:react/recommended",
+    "prettier"
+  ],
+  "globals": {
+    "Atomics": "readonly",
+    "SharedArrayBuffer": "readonly"
   },
   "parserOptions": {
     "ecmaFeatures": {
@@ -11,8 +21,7 @@
     "ecmaVersion": 2018,
     "sourceType": "module"
   },
-  "extends": ["prettier"],
-  "plugins": ["prettier"],
+  "plugins": ["react", "prettier"],
   "rules": {
     "prettier/prettier": ["error"]
   }

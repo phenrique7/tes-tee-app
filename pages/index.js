@@ -1,4 +1,5 @@
 import * as React from 'react';
+import PropTypes from 'prop-types';
 import fs from 'fs';
 import path from 'path';
 import Head from 'next/head';
@@ -12,13 +13,13 @@ import Button from '../components/button/Button';
 import Product from '../components/product/Product';
 import { useBodyOverflow } from '../hooks/useBodyOverflow';
 import Modal from '../components/modal/Modal';
-import {
-  Main,
-  MainContent,
-  MobileSearch,
-  ProductList,
-} from '../styles/views/home';
+import * as S from '../styles/pages/home';
 
+/**
+ * @param {Shirt[]} shirts
+ * @returns {React.ReactNode}
+ * @constructor
+ */
 export default function Home({ shirts }) {
   const [search, setSearch] = React.useState('');
   const [mobileSearchActive, setMobileSearchActive] = React.useState(
@@ -78,7 +79,7 @@ export default function Home({ shirts }) {
     setSearch(value);
   }
 
-  function onSelectedProduct(product) {
+  function selectProduct(product) {
     setSelectedProduct(product);
     setShowModal(true);
   }
@@ -141,7 +142,7 @@ export default function Home({ shirts }) {
           rel="stylesheet"
         />
       </Head>
-      <Main>
+      <S.Main>
         <Header
           onMenuClick={() => setShowMenu(true)}
           onSearchClick={onSearchClick}
@@ -150,16 +151,16 @@ export default function Home({ shirts }) {
           <Search value={search} onChange={onChangeSearch} />
         </Header>
         {mobileSearchActive && (
-          <MobileSearch>
+          <S.MobileSearch>
             <Search value={search} onChange={onChangeSearch} focused />
-          </MobileSearch>
+          </S.MobileSearch>
         )}
-        <MainContent>
-          <div>
+        <S.MainContent>
+          <S.FilterBox>
             <Filter filterColor={filterColor} filterSize={filterSize} />
-          </div>
-          <div>
-            <ProductList>
+          </S.FilterBox>
+          <S.ProductListBox>
+            <S.ProductList>
               {products.map(product => (
                 <div key={product.id}>
                   <Product
@@ -170,7 +171,7 @@ export default function Home({ shirts }) {
                     <Button
                       bg="primaryRegular"
                       color="primaryLightest"
-                      onClick={() => onSelectedProduct(product)}
+                      onClick={() => selectProduct(product)}
                       fullWidth
                     >
                       Add to cart
@@ -178,9 +179,9 @@ export default function Home({ shirts }) {
                   </Product>
                 </div>
               ))}
-            </ProductList>
-          </div>
-        </MainContent>
+            </S.ProductList>
+          </S.ProductListBox>
+        </S.MainContent>
         <Modal
           showModal={showModal}
           productId={selectedProduct.id}
@@ -206,10 +207,14 @@ export default function Home({ shirts }) {
             onClose={() => setShowCart(false)}
           />
         </Drawer>
-      </Main>
+      </S.Main>
     </>
   );
 }
+
+Home.propTypes = {
+  shirts: PropTypes.array.isRequired,
+};
 
 export async function getStaticProps() {
   const shirtsDirectory = path.join(process.cwd(), '__mocks__');

@@ -1,15 +1,18 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import SearchIcon from '../icons/Search';
-import {
-  SearchIconWrapper,
-  SearchInput,
-  SearchInputLabel,
-  SearchRoot,
-} from './Search.style';
+import * as S from './Search.style';
 
+/**
+ * @param {SearchProps} props
+ * @returns {React.ReactNode}
+ * @constructor
+ */
 export default function Search(props) {
   const { focused, value, onChange } = props;
+  /**
+   * @type {React.MutableRefObject<HTMLInputElement>}
+   */
   const inputRef = React.useRef();
 
   React.useEffect(() => {
@@ -19,20 +22,20 @@ export default function Search(props) {
   }, [focused]);
 
   return (
-    <SearchRoot>
-      <SearchIconWrapper>
+    <S.SearchRoot>
+      <S.SearchIconBox>
         <SearchIcon />
-      </SearchIconWrapper>
-      <SearchInputLabel>
-        <SearchInput
+      </S.SearchIconBox>
+      <S.SearchInputLabel>
+        <S.SearchInput
           ref={inputRef}
           type="text"
           placeholder="Looking for something?"
           value={value}
           onChange={ev => onChange(ev.target.value)}
         />
-      </SearchInputLabel>
-    </SearchRoot>
+      </S.SearchInputLabel>
+    </S.SearchRoot>
   );
 }
 

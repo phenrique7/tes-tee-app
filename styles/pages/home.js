@@ -18,25 +18,27 @@ export const MainContent = styled.div`
   padding: 0 1.5rem 1.5rem 1.5rem;
   flex-wrap: wrap;
 
-  > div:first-child {
-    flex: 1;
-  }
-
   @media (min-width: ${props => props.theme.screens.lg}) {
     padding: 0;
+  }
+`;
 
-    > div:first-child {
-      padding: 0 0.75rem;
-      flex-grow: 0;
-      max-width: 24%;
-      flex-basis: 24%;
-    }
+export const FilterBox = styled.div`
+  flex: 1;
 
-    > div:last-child {
-      flex-grow: 0;
-      max-width: 76%;
-      flex-basis: 76%;
-    }
+  @media (min-width: ${props => props.theme.screens.lg}) {
+    padding: 0 0.75rem;
+    flex-grow: 0;
+    max-width: 24%;
+    flex-basis: 24%;
+  }
+`;
+
+export const ProductListBox = styled.div`
+  @media (min-width: ${props => props.theme.screens.lg}) {
+    flex-grow: 0;
+    max-width: 76%;
+    flex-basis: 76%;
   }
 `;
 

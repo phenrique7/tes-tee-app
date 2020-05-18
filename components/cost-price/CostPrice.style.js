@@ -1,8 +1,24 @@
 import styled from 'styled-components';
+import { IconButtonRoot } from '../icon-button/IconButton.style';
 
 export const ActionOptions = styled.div`
   display: flex;
   align-items: center;
+`;
+
+export const SubtractButton = styled(IconButtonRoot)`
+  margin-left: 0;
+  width: 25px;
+  height: 25px;
+  background-color: ${props => props.theme.palette.primaryLighter};
+  border-radius: 50%;
+`;
+
+export const AddButton = styled(IconButtonRoot)`
+  width: 25px;
+  height: 25px;
+  background-color: ${props => props.theme.palette.primaryLighter};
+  border-radius: 50%;
 `;
 
 export const PriceResult = styled.div`

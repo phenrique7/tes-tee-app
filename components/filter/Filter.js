@@ -1,14 +1,6 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import {
-  FilterCategory,
-  Color,
-  FilterColors,
-  FilterRoot,
-  FilterText,
-  FilterSizes,
-  Size,
-} from './Filter.style';
+import * as S from './Filter.style';
 
 const colors = [
   { hex: '#FFFFFF', name: 'white' },
@@ -23,16 +15,22 @@ const colors = [
 
 const sizes = ['XS', 'S', 'M', 'L', 'XL', 'XXL'];
 
-export default function Filter({ filterColor, filterSize }) {
+/**
+ * @param {FilterProps} props
+ * @returns {React.ReactNode}
+ * @constructor
+ */
+export default function Filter(props) {
+  const { filterColor, filterSize } = props;
   const [activeFilterColor, setActiveFilterColor] = React.useState('all');
   const [activeFilterSize, setActiveFilterSize] = React.useState('all');
 
   return (
-    <FilterRoot>
-      <FilterCategory>
-        <FilterText>Colors</FilterText>
-        <FilterColors>
-          <Color
+    <S.FilterRoot>
+      <S.FilterCategory>
+        <S.FilterText>Colors</S.FilterText>
+        <S.FilterColors>
+          <S.Color
             tabIndex="0"
             role="button"
             joker
@@ -47,7 +45,7 @@ export default function Filter({ filterColor, filterSize }) {
             }}
           />
           {colors.map(color => (
-            <Color
+            <S.Color
               tabIndex="0"
               key={color.name}
               color={color.hex}
@@ -63,13 +61,13 @@ export default function Filter({ filterColor, filterSize }) {
               }}
             />
           ))}
-        </FilterColors>
-      </FilterCategory>
-      <FilterCategory>
-        <FilterText>Sizes</FilterText>
-        <FilterSizes>
+        </S.FilterColors>
+      </S.FilterCategory>
+      <S.FilterCategory>
+        <S.FilterText>Sizes</S.FilterText>
+        <S.FilterSizes>
           {sizes.map(size => (
-            <Size
+            <S.Size
               key={size}
               tabIndex="0"
               role="button"
@@ -84,11 +82,11 @@ export default function Filter({ filterColor, filterSize }) {
               }}
             >
               <span>{size}</span>
-            </Size>
+            </S.Size>
           ))}
-        </FilterSizes>
-      </FilterCategory>
-    </FilterRoot>
+        </S.FilterSizes>
+      </S.FilterCategory>
+    </S.FilterRoot>
   );
 }
 
