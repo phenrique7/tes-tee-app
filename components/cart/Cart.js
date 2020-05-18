@@ -2,29 +2,16 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import Button from '../button/Button';
 import CloseIcon from '../icons/Close';
-import IconButton from '../icon-button/IconButton';
 import CartIcon from '../icons/Cart';
 import { SHIPPING_PRICE } from '../../utils/constants';
 import CostPrice from '../cost-price/CostPrice';
-import {
-  CartBody,
-  CartDivider,
-  CartEmptyButton,
-  CartEmptyText,
-  CartFooter,
-  CartHeader,
-  CartHeaderText,
-  CartRoot,
-  CartTotal,
-  CartTotals,
-  CartGrandTotal,
-  CartItems,
-  Item,
-  ItemImage,
-  ItemName,
-  ItemCostPrice,
-} from './Cart.style';
+import * as S from './Cart.style';
 
+/**
+ * @param {CartProps} props
+ * @returns {React.ReactNode}
+ * @constructor
+ */
 export default function Cart(props) {
   const { items, updateItem, removeItem, clear, onClose } = props;
   const [total, setTotal] = React.useState(0);
@@ -49,31 +36,28 @@ export default function Cart(props) {
   const grandTotal = total + SHIPPING_PRICE;
 
   return (
-    <CartRoot>
-      <CartHeader>
+    <S.CartRoot>
+      <S.CartHeader>
         <div>
           <CartIcon />
-          <CartHeaderText>My cart</CartHeaderText>
+          <S.CartHeaderText>My cart</S.CartHeaderText>
         </div>
-        <IconButton
-          onClick={onClose}
-          overrides={{ margin: 0, padding: 0 }}
-        >
+        <S.CartHeaderClose onClick={onClose}>
           <CloseIcon />
-        </IconButton>
-      </CartHeader>
-      <CartBody emptyCart={emptyCart}>
+        </S.CartHeaderClose>
+      </S.CartHeader>
+      <S.CartBody emptyCart={emptyCart}>
         {emptyCart ? (
-          <CartEmptyText>You cart is empty.</CartEmptyText>
+          <S.CartEmptyText>You cart is empty.</S.CartEmptyText>
         ) : (
           <>
-            <CartItems>
+            <S.CartItems>
               {items.map(item => (
-                <Item key={`${item.id}-${item.size}`}>
-                  <ItemImage src={item.image} alt={item.name} />
+                <S.Item key={`${item.id}-${item.size}`}>
+                  <S.ItemImage src={item.image} alt={item.name} />
                   <div>
-                    <ItemName>{item.name}</ItemName>
-                    <ItemCostPrice>
+                    <S.ItemName>{item.name}</S.ItemName>
+                    <S.ItemCostPrice>
                       <CostPrice
                         units={item.quantity}
                         size={item.size}
@@ -81,12 +65,12 @@ export default function Cart(props) {
                           handleChangeItem(item.id, newItemData);
                         }}
                       />
-                    </ItemCostPrice>
+                    </S.ItemCostPrice>
                   </div>
-                </Item>
+                </S.Item>
               ))}
-            </CartItems>
-            <CartEmptyButton>
+            </S.CartItems>
+            <S.CartEmptyButton>
               <Button
                 color="primaryLight"
                 onClick={clear}
@@ -95,18 +79,18 @@ export default function Cart(props) {
               >
                 Empty cart
               </Button>
-            </CartEmptyButton>
-            <CartDivider />
-            <CartTotals>
-              <CartTotal>{`Shipping — $${SHIPPING_PRICE}`}</CartTotal>
-              <CartTotal>{`Shirts — $${total}`}</CartTotal>
-              <CartGrandTotal>{`Grand total — $${grandTotal}`}</CartGrandTotal>
-            </CartTotals>
-            <CartDivider />
+            </S.CartEmptyButton>
+            <S.CartDivider />
+            <S.CartTotals>
+              <S.CartTotal>{`Shipping — $${SHIPPING_PRICE}`}</S.CartTotal>
+              <S.CartTotal>{`Shirts — $${total}`}</S.CartTotal>
+              <S.CartGrandTotal>{`Grand total — $${grandTotal}`}</S.CartGrandTotal>
+            </S.CartTotals>
+            <S.CartDivider />
           </>
         )}
-      </CartBody>
-      <CartFooter>
+      </S.CartBody>
+      <S.CartFooter>
         <Button
           bg="primaryRegular"
           color="primaryLightest"
@@ -115,8 +99,8 @@ export default function Cart(props) {
         >
           Proceed to checkout
         </Button>
-      </CartFooter>
-    </CartRoot>
+      </S.CartFooter>
+    </S.CartRoot>
   );
 }
 

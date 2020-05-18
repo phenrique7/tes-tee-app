@@ -1,20 +1,17 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import IconButton from '../icon-button/IconButton';
-import { theme } from '../../styles/theme';
 import SubtractIcon from '../icons/Subtract';
 import AddIcon from '../icons/Add';
 import MultiplyIcon from '../icons/Multiply';
 import EqualsIcon from '../icons/Equals';
 import { PRODUCT_UNIT_PRICE } from '../../utils/constants';
-import {
-  ActionOptions,
-  PriceResult,
-  ProductQuantity,
-  ProductSize,
-  TotalPrice,
-} from './CostPrice.style';
+import * as S from './CostPrice.style';
 
+/**
+ * @param {CostPriceProps} props
+ * @returns {React.ReactNode}
+ * @constructor
+ */
 export default function CostPrice(props) {
   const { units, size, handleChange } = props;
   const [quantity, setQuantity] = React.useState(units);
@@ -40,40 +37,23 @@ export default function CostPrice(props) {
 
   return (
     <>
-      <ActionOptions>
-        <IconButton
-          overrides={{
-            marginLeft: 0,
-            width: 25,
-            height: 25,
-            background: theme.palette.primaryLighter,
-            borderRadius: '50%',
-          }}
-          onClick={subtractUnit}
-        >
+      <S.ActionOptions>
+        <S.SubtractButton onClick={subtractUnit}>
           <SubtractIcon />
-        </IconButton>
-        <IconButton
-          overrides={{
-            width: 25,
-            height: 25,
-            background: theme.palette.primaryLighter,
-            borderRadius: '50%',
-          }}
-          onClick={addUnit}
-        >
+        </S.SubtractButton>
+        <S.AddButton onClick={addUnit}>
           <AddIcon />
-        </IconButton>
-      </ActionOptions>
-      <PriceResult>
-        <ProductQuantity>{quantity}</ProductQuantity>
+        </S.AddButton>
+      </S.ActionOptions>
+      <S.PriceResult>
+        <S.ProductQuantity>{quantity}</S.ProductQuantity>
         <MultiplyIcon />
-        <ProductSize>
+        <S.ProductSize>
           <span>{size}</span>
-        </ProductSize>
+        </S.ProductSize>
         <EqualsIcon />
-        <TotalPrice>{quantity * PRODUCT_UNIT_PRICE}</TotalPrice>
-      </PriceResult>
+        <S.TotalPrice>{quantity * PRODUCT_UNIT_PRICE}</S.TotalPrice>
+      </S.PriceResult>
     </>
   );
 }

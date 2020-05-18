@@ -1,70 +1,73 @@
 import * as React from 'react';
 import PropType from 'prop-types';
-import IconButton from '../icon-button/IconButton';
 import CloseIcon from '../icons/Close';
 import InstagramIcon from '../icons/Instagram';
 import FacebookIcon from '../icons/Facebook';
 import TwitterIcon from '../icons/Twitter';
-import {
-  Logo,
-  MenuIconClose,
-  MenuLogo,
-  MenuNavItem,
-  MenuNavItemText,
-  MenuRoot,
-  MenuSocialNetworks,
-  Slogan,
-} from './Menu.style';
+import * as S from './Menu.style';
 
-export default function Menu({ onClose }) {
+/**
+ * @param {MenuProps} props
+ * @returns {React.ReactNode}
+ * @constructor
+ */
+export default function Menu(props) {
+  const { onClose } = props;
+
   return (
-    <MenuRoot>
-      <MenuLogo>
-        <MenuIconClose>
-          <IconButton onClick={onClose} overrides={{ marginTop: 0 }}>
+    <S.MenuRoot>
+      <S.MenuLogo>
+        <S.MenuIconClose>
+          <S.MenuIconCloseButton onClick={onClose}>
             <CloseIcon />
-          </IconButton>
-        </MenuIconClose>
-        <Logo src="/assets/tes-tee-logo.png" alt="Tes Tee" />
-        <Slogan>
+          </S.MenuIconCloseButton>
+        </S.MenuIconClose>
+        <S.Logo src="/assets/tes-tee-logo.png" alt="Tes Tee" />
+        <S.Slogan>
           Developer apparel <sup>TM</sup>
-        </Slogan>
-      </MenuLogo>
+        </S.Slogan>
+      </S.MenuLogo>
       <nav>
         <ul>
-          <MenuNavItem>
-            <MenuNavItemText color="primaryDark">About us</MenuNavItemText>
-          </MenuNavItem>
-          <MenuNavItem bg="primaryLighter">
-            <MenuNavItemText color="primaryDark">Products</MenuNavItemText>
-          </MenuNavItem>
-          <MenuNavItem bg="primaryLight">
-            <MenuNavItemText color="primaryDark">
+          <S.MenuNavItem>
+            <S.MenuNavItemText color="primaryDark">
+              About us
+            </S.MenuNavItemText>
+          </S.MenuNavItem>
+          <S.MenuNavItem bg="primaryLighter">
+            <S.MenuNavItemText color="primaryDark">
+              Products
+            </S.MenuNavItemText>
+          </S.MenuNavItem>
+          <S.MenuNavItem bg="primaryLight">
+            <S.MenuNavItemText color="primaryDark">
               Be our artist
-            </MenuNavItemText>
-          </MenuNavItem>
-          <MenuNavItem bg="primaryRegular">
-            <MenuNavItemText color="primaryLightest">FAQ</MenuNavItemText>
-          </MenuNavItem>
-          <MenuNavItem bg="primaryDark">
-            <MenuNavItemText color="primaryLightest">
+            </S.MenuNavItemText>
+          </S.MenuNavItem>
+          <S.MenuNavItem bg="primaryRegular">
+            <S.MenuNavItemText color="primaryLightest">
+              FAQ
+            </S.MenuNavItemText>
+          </S.MenuNavItem>
+          <S.MenuNavItem bg="primaryDark">
+            <S.MenuNavItemText color="primaryLightest">
               Contact us
-            </MenuNavItemText>
-          </MenuNavItem>
+            </S.MenuNavItemText>
+          </S.MenuNavItem>
         </ul>
       </nav>
-      <MenuSocialNetworks>
-        <IconButton overrides={{ padding: 0 }}>
+      <S.MenuSocialNetworks>
+        <S.MenuSocialNetworksButton>
           <InstagramIcon />
-        </IconButton>
-        <IconButton overrides={{ padding: 0 }}>
+        </S.MenuSocialNetworksButton>
+        <S.MenuSocialNetworksButton>
           <FacebookIcon />
-        </IconButton>
-        <IconButton overrides={{ padding: 0 }}>
+        </S.MenuSocialNetworksButton>
+        <S.MenuSocialNetworksButton>
           <TwitterIcon />
-        </IconButton>
-      </MenuSocialNetworks>
-    </MenuRoot>
+        </S.MenuSocialNetworksButton>
+      </S.MenuSocialNetworks>
+    </S.MenuRoot>
   );
 }
 

@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { IconButtonRoot } from '../icon-button/IconButton.style';
 
 export const HeaderRoot = styled.header`
   display: flex;
@@ -11,14 +12,19 @@ export const HeaderRoot = styled.header`
   }
 `;
 
-export const ToolbarGroup = styled.div`
+export const HeaderGroup = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
   min-width: 85px;
 `;
 
-export const Logo = styled.img`
+export const HeaderMenuButton = styled(IconButtonRoot)`
+  margin-left: 0;
+  padding-left: 0;
+`;
+
+export const HeaderLogo = styled.img`
   margin: 0 0.75rem;
   width: 142px;
 `;

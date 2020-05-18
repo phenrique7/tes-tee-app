@@ -10,7 +10,7 @@ export const SearchRoot = styled.div`
   }
 `;
 
-export const SearchIconWrapper = styled.div`
+export const SearchIconBox = styled.div`
   position: absolute;
   top: 0;
   bottom: 0;

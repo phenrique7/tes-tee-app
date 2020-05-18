@@ -1,21 +1,25 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { IconButtonRoot } from './IconButton.style';
+import * as S from './IconButton.style';
 
+/**
+ * @param {IconButtonProps} props
+ * @returns {React.ReactNode}
+ * @constructor
+ */
 export default function IconButton(props) {
-  const { children, onClick, disabled, label, overrides } = props;
+  const { children, onClick, disabled, label } = props;
 
   return (
-    <IconButtonRoot
+    <S.IconButtonRoot
       type="button"
       tabIndex={disabled ? -1 : 0}
       onClick={onClick}
       disabled={disabled}
       aria-label={label}
-      style={overrides}
     >
       {children}
-    </IconButtonRoot>
+    </S.IconButtonRoot>
   );
 }
 
@@ -23,13 +27,11 @@ IconButton.defaultProps = {
   disabled: false,
   label: '',
   onClick: () => {},
-  overrides: {},
 };
 
 IconButton.propTypes = {
   children: PropTypes.node.isRequired,
   label: PropTypes.string.isRequired,
-  overrides: PropTypes.object,
   onClick: PropTypes.func,
   disabled: PropTypes.bool,
 };

@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { IconButtonRoot } from '../icon-button/IconButton.style';
 
 export const ModalRoot = styled.div`
   position: fixed;
@@ -38,6 +39,12 @@ export const ModalHeader = styled.div`
   border-top-left-radius: 10px;
   align-items: flex-start;
   padding: 1.5rem;
+`;
+
+export const ModalHeaderClose = styled(IconButtonRoot)`
+  padding: 0;
+  margin-left: 0.5rem;
+  margin-right: 0;
 `;
 
 export const ModalProduct = styled.div`

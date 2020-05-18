@@ -1,29 +1,16 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import IconButton from '../icon-button/IconButton';
 import Button from '../button/Button';
 import CloseIcon from '../icons/Close';
 import CostPrice from '../cost-price/CostPrice';
 import { PRODUCT_UNIT_PRICE } from '../../utils/constants';
-import {
-  Size,
-  ProductSizes,
-  ModalRoot,
-  ModalBody,
-  ModalContainer,
-  ModalContent,
-  ModalDivider,
-  ModalFooter,
-  ModalHeader,
-  ModalOverlay,
-  ModalProduct,
-  ModalProductImage,
-  ModalProductName,
-  ProductPurchaseDetails,
-  ProductDetailsText,
-  ProductQuantities,
-} from './Modal.style';
+import * as S from './Modal.style';
 
+/**
+ * @param {ModalProps} props
+ * @returns {React.ReactNode}
+ * @constructor
+ */
 export default function Modal(props) {
   const {
     showModal,
@@ -88,31 +75,27 @@ export default function Modal(props) {
 
   return showModal ? (
     <>
-      <ModalRoot>
-        <ModalContainer>
-          <ModalContent>
-            <ModalHeader>
-              <ModalProduct>
-                <ModalProductImage src={productImage} alt={productName} />
-                <ModalProductName>{productName}</ModalProductName>
-              </ModalProduct>
-              <IconButton
-                onClick={closeModal}
-                overrides={{
-                  padding: 0,
-                  marginLeft: '0.5rem',
-                  marginRight: 0,
-                }}
-              >
+      <S.ModalRoot>
+        <S.ModalContainer>
+          <S.ModalContent>
+            <S.ModalHeader>
+              <S.ModalProduct>
+                <S.ModalProductImage
+                  src={productImage}
+                  alt={productName}
+                />
+                <S.ModalProductName>{productName}</S.ModalProductName>
+              </S.ModalProduct>
+              <S.ModalHeaderClose onClick={closeModal}>
                 <CloseIcon />
-              </IconButton>
-            </ModalHeader>
-            <ModalBody>
-              <ProductPurchaseDetails>
-                <ProductDetailsText>Which size?</ProductDetailsText>
-                <ProductSizes>
+              </S.ModalHeaderClose>
+            </S.ModalHeader>
+            <S.ModalBody>
+              <S.ProductPurchaseDetails>
+                <S.ProductDetailsText>Which size?</S.ProductDetailsText>
+                <S.ProductSizes>
                   {productSizes.map(size => (
-                    <Size
+                    <S.Size
                       key={size}
                       tabIndex="0"
                       role="button"
@@ -125,22 +108,22 @@ export default function Modal(props) {
                       }}
                     >
                       <span>{size}</span>
-                    </Size>
+                    </S.Size>
                   ))}
-                </ProductSizes>
-              </ProductPurchaseDetails>
-              <ProductPurchaseDetails>
-                <ProductDetailsText>How many?</ProductDetailsText>
-                <ProductQuantities>
+                </S.ProductSizes>
+              </S.ProductPurchaseDetails>
+              <S.ProductPurchaseDetails>
+                <S.ProductDetailsText>How many?</S.ProductDetailsText>
+                <S.ProductQuantities>
                   <CostPrice
                     size={activeSize}
                     handleChange={handleChangePrice}
                   />
-                </ProductQuantities>
-              </ProductPurchaseDetails>
-            </ModalBody>
-            <ModalDivider />
-            <ModalFooter>
+                </S.ProductQuantities>
+              </S.ProductPurchaseDetails>
+            </S.ModalBody>
+            <S.ModalDivider />
+            <S.ModalFooter>
               <Button
                 onClick={addToCart}
                 bg="primaryRegular"
@@ -150,11 +133,11 @@ export default function Modal(props) {
               >
                 Add to cart
               </Button>
-            </ModalFooter>
-          </ModalContent>
-        </ModalContainer>
-      </ModalRoot>
-      <ModalOverlay />
+            </S.ModalFooter>
+          </S.ModalContent>
+        </S.ModalContainer>
+      </S.ModalRoot>
+      <S.ModalOverlay />
     </>
   ) : null;
 }

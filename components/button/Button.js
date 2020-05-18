@@ -1,3 +1,3 @@
-import { ButtonRoot as Button } from './Button.style';
+import * as S from './Button.style';
 
-export default Button;
+export default S.ButtonRoot;
