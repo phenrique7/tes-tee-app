@@ -2,7 +2,7 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import Button from '../button/Button';
 import CloseIcon from '../icons/Close';
-import CartIcon from '../icons/Cart';
+import CartIcon from '../cart-icon/CartIcon.vue';
 import { SHIPPING_PRICE } from '../../utils/constants';
 import CostPrice from '../cost-price/CostPrice';
 import * as S from './Cart.style';

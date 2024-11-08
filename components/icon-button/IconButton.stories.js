@@ -1,6 +1,6 @@
 import React from 'react';
 import IconButton from './IconButton';
-import Hamburger from '../icons/Hamburger';
+import Hamburger from '../hamburger-icon/HamburgerIcon.vue';
 
 export default {
   title: 'IconButton',

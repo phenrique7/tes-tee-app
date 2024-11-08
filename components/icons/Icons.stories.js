@@ -1,14 +1,14 @@
 import React from 'react';
 import styled from 'styled-components';
 import AddIcon from './Add';
-import CartIcon from './Cart';
+import CartIcon from '../cart-icon/CartIcon.vue';
 import CloseIcon from './Close';
 import EqualsIcon from './Equals';
 import FacebookIcon from './Facebook';
-import HamburgerIcon from './Hamburger';
+import HamburgerIcon from '../hamburger-icon/HamburgerIcon.vue';
 import InstagramIcon from './Instagram';
 import MultiplyIcon from './Multiply';
-import SearchIcon from './Search';
+import SearchIcon from '../search-icon/SearchIcon.vue';
 import SubtractIcon from './Subtract';
 import TwitterIcon from './Twitter';
 

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import SearchIcon from '../icons/Search';
+import SearchIcon from '../search-icon/SearchIcon.vue';
 import * as S from './Search.style';
 
 /**
